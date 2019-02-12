@@ -22,6 +22,13 @@ class App extends React.Component{
     this.setState({ fishes: fishes });
   }
 
+  updateFish = (key, updatedProperty) => {
+    const fishes = {...this.state.fishes};
+    fishes[key] = updatedProperty;
+    this.setState({fishes: fishes});
+
+  }
+
   addToOrder = (index) => {
     const order = {...this.state.order}
     order[index] =  order[index] +1 || 1;
@@ -42,7 +49,7 @@ class App extends React.Component{
             </ul>
         </div>        
           <Order fishes={this.state.fishes} order={this.state.order} />
-          <Inventory addFish={this.addFish} loadSamples={this.loadSamples}/>
+          <Inventory addFish={this.addFish} loadSamples={this.loadSamples} fishes={this.state.fishes} updateFish={this.updateFish}/>
         </div>
     );
   };
