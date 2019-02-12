@@ -3,6 +3,7 @@ import Header from './Header';
 import Order from './Order';
 import Inventory from './Inventory';
 import Fish from './Fish';
+import sampleFishes from '../sample-fishes';
 
 class App extends React.Component{
   constructor() {
@@ -15,6 +16,10 @@ class App extends React.Component{
     const timestamp = Date.now();
     fishes[`fish-${timestamp}`] = fish;
     this.setState({ fishes: fishes });
+  }
+
+  loadSamples = () => {
+    this.setState({fishes: sampleFishes})
   }
 
   render(){
@@ -31,7 +36,7 @@ class App extends React.Component{
           </ul>
         </div>        
           <Order />
-          <Inventory addFish={this.addFish}/>
+          <Inventory addFish={this.addFish} loadSamples={this.loadSamples}/>
         </div>
     );
   };
