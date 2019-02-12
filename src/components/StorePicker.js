@@ -1,10 +1,15 @@
 import React from 'react';
+import { getFunName } from '../helpers';
 
 class StorePicker extends React.Component{
     constructor() {
       super();
       this.state = {term: ''}
     }
+    componentDidMount() {
+      this.setState({term: getFunName()})
+    }
+
       onInputChange = (e) => {
         this.setState({term: e.target.value})
       }
@@ -21,7 +26,7 @@ class StorePicker extends React.Component{
       return (
       <form onSubmit={this.goToStore} className="store-selector">
         <h2>Please Enter A Store</h2>
-        <input value={this.state.input} onChange={this.onInputChange} ref={(input) => this.input = input} type="text" placeholder="Store name"/>
+        <input value={this.state.term} onChange={this.onInputChange} ref={(input) => this.input = input} type="text" placeholder="Store name"/>
         <button type="submit">Visit Store</button>
       </form>
     )
