@@ -9,8 +9,8 @@ import NotFound from './components/NotFound';
 render(
   <BrowserRouter >
     <div>
-      <Match exactly pattern ="/" component={StorePicker} />
-      <Match exactly pattern ="/search/:storeId" component={App} />
+      <Match exactly pattern="/" component={StorePicker} />
+      <Match exactly pattern="/store/:storeId" component={App} />
       <Miss component={NotFound} />
     </div>
   </BrowserRouter>
