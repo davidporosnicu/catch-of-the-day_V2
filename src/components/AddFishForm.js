@@ -4,7 +4,7 @@ class AddFishForm extends React.Component{
 
   createFish = (e) => {
       e.preventDefault();
-      
+
       const fish = {
         name: this.name.value,
         price: this.price.value,
@@ -13,7 +13,7 @@ class AddFishForm extends React.Component{
         image: this.image.value
       }
 
-      console.log(fish);
+      this.props.addFish(fish);
       this.fishForm.reset();
   }
 
