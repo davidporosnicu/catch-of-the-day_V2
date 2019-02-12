@@ -8,7 +8,11 @@ import sampleFishes from '../sample-fishes';
 class App extends React.Component{
   constructor() {
     super();
-    this.state = { fishes: {} }
+    this.state = { fishes: {}, order: {} }
+  }
+
+  loadSamples = () => {
+    this.setState({fishes: sampleFishes})
   }
 
   addFish = (fish) => {
@@ -18,8 +22,10 @@ class App extends React.Component{
     this.setState({ fishes: fishes });
   }
 
-  loadSamples = () => {
-    this.setState({fishes: sampleFishes})
+  addToOrder = (index) => {
+    const order = {...this.state.order}
+    order[index] =  order[index] +1 || 1;
+    this.setState({order: order});
   }
 
   render(){
@@ -27,15 +33,15 @@ class App extends React.Component{
       <div className="catch-of-the-day">
         <div className="menu">
           <Header tagline="Fresh Seafood Market"/>
-          <ul>
-            {
-              Object
-                .keys(this.state.fishes)
-                .map(el => <Fish key={el} details={this.state.fishes[el]}/>)
-            } 
-          </ul>
+            <ul className="list-of-fishes">
+              {
+                Object
+                  .keys(this.state.fishes)
+                  .map(el => <Fish key={el} index={el} details={this.state.fishes[el]} addToOrder={this.addToOrder} />)
+              } 
+            </ul>
         </div>        
-          <Order />
+          <Order fishes={this.state.fishes} order={this.state.order} />
           <Inventory addFish={this.addFish} loadSamples={this.loadSamples}/>
         </div>
     );
